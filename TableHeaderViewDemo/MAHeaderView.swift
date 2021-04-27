@@ -63,6 +63,8 @@ class MAHeaderView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        // 这句话比较关键，如果界面上有UILabel，需要设置UILabel的preferredMaxLayoutWidth，（如果不设置MAHeaderView就不能自适应高度），如果最大宽度固定，可以在处理约束的位置设置；如果受其他view影响，可以在layoutSubviews中设置。
+
         self.titleLabel.preferredMaxLayoutWidth = self.frame.size.width - 15 - 90 - 15 - 15
     }
     
