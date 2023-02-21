@@ -44,7 +44,7 @@ class MAHeaderView: UIView {
         self.addSubview(self.lineView)
         
         self.headerView.ma_makeConstraints { (make) in
-            make.topLeft.equalTo(self).offset(15)
+            make.topLeft.equalTo(self).offsets(15)
             make.size.ma_equal(90)
             make.bottom.lessThanOrEqualTo(self).offset(-15)
         }

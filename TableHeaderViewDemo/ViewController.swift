@@ -35,15 +35,19 @@ class ViewController: UIViewController {
 
     @IBAction func refreshAction(_ sender: UIBarButtonItem) {
         self.string += Date.init().description
-        let headerView = tableView.tableHeaderView as! MAHeaderView // 获取headerView
-        headerView.title = self.string
-        
-        let smallSize =  headerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)  //获取到基于Autolayout布局控件尽可能小的大小
-        var tempFrame = headerView.frame
-        tempFrame.size.height = smallSize.height
-        headerView.frame = tempFrame           //  直接更改frame无效
-        tableView.tableHeaderView = headerView // 【重点】重新为 TableView 赋值 Header
-        self.tableView.reloadData()
+        (tableView.tableHeaderView as? MAHeaderView)?.title = self.string
+        self.refreshTableHeaderViewFrame()
+    }
+    
+    func refreshTableHeaderViewFrame() {
+        if let headerView = tableView.tableHeaderView {// 获取headerView
+            let smallSize =  headerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)  //获取到基于Autolayout布局控件尽可能小的大小
+            var tempFrame = headerView.frame
+            tempFrame.size.height = smallSize.height
+            headerView.frame = tempFrame           //  直接更改frame无效
+            tableView.tableHeaderView = headerView // 【重点】重新为 TableView 赋值 Header
+            self.tableView.reloadData()
+        }
     }
     
 }
